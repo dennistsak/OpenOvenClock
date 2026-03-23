@@ -25,6 +25,29 @@ As well as several additions to the original design. More specifically:
 - Settings menu.
 - Easily accessible reset button, with integrated hidden serial interface.
 
+## Instalation guide
+In order to compile the firmware sketch for the ATmega328P, the Arduino IDE is required, as well as some 3rd party libraries.
+### Libraries used:
+- [LedControl](https://github.com/wayoda/LedControl) for communicating with the MAX7219.
+- [DS3231](https://github.com/NorthernWidget/DS3231) for interfacing with the DS3231 RTC.
+- [Switch](https://github.com/avdwebLibraries/avdweb_Switch) for rotary switch button de-bounce and multiple input type distinction.
+- (Pre-installed) [Wire](https://docs.arduino.cc/language-reference/en/functions/communication/wire/) for I2C communication.
+- (Pre-installed) [EEPROM](https://docs.arduino.cc/learn/built-in-libraries/eeprom/) for saving settings to the ATmega's EEPROM.
+- (Pre-installed) [avr/wdt.h]() for implementing the watchdog timer.
+
+After compiling the firmware sketch we need to flash it to the ATmega328P. For this guide we assume the use of the <b>FTDI FT232RL USB-to-Serial adapter</b>. In order for this adapter to function properly, it is required that the correct drivers are installed. This installation process is explained in great detail in this [guide](https://support.arduino.cc/hc/en-us/articles/4411305694610-Install-or-update-FTDI-drivers).
+
+The final requirement for uploading the firmware, is an ATmega328P chip, that has a bootloader configured for using an external 16Mhz crystal, already burned. If such chip is unavailable, burning a bootloader is a relatively easy process by following the steps described in this [guide](https://support.arduino.cc/hc/en-us/articles/4841602539164-Burn-the-bootloader-on-UNO-Mega-and-classic-Nano-using-another-Arduino).
+
+At this point, we are ready to proceed with the firmware flashing process. This process is described in the following steps:
+
+1. Connect the USB-to-Serial adapter to the OpenOvenTimer board's serial port header.
+2. Connect the USB-to-Serial adapter to an available USB port on the machine where Arduino IDE is installed.
+3. Select the appropriate serial communication port inside Arduino IDE, when it appears.
+4. Ensure the Serial Monitor window is closed, as it will in many cases interfere with the upload process.
+5. Click the upload button and wait for the firmware flash process to complete.
+6. Finally, click the reset button to get the micro-controller running on the new firmware.
+
 ## PCB design summary
 During the PCB design process, several key challenges arose, the most important being the selection of devices that could reliably work together, to implement the desired functionality.
 
@@ -46,10 +69,3 @@ Board front side           |  Board back side
 ## Firmware design
 While developing the firmware, a state machine architecture was used to ensure determinism. 
 
-### Libraries used:
-- [LedControl](https://github.com/wayoda/LedControl) for communicating with the MAX7219.
-- [DS3231](https://github.com/NorthernWidget/DS3231) for interfacing with the DS3231 RTC.
-- [Switch](https://github.com/avdwebLibraries/avdweb_Switch) for rotary switch button de-bounce and multiple input type distinction.
-- [Wire](https://docs.arduino.cc/language-reference/en/functions/communication/wire/) for I2C communication.
-- [EEPROM](https://docs.arduino.cc/learn/built-in-libraries/eeprom/) for saving settings to the ATmega's EEPROM.
-- [avr/wdt.h]() for implementing the watchdog timer.
