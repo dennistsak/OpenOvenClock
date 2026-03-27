@@ -15,6 +15,7 @@ The new timer supports most of the original features including:
 - Countdown baking timer.
 
 As well as several additions to the original design. More specifically:
+
 - Rotary encoder with integrated switch. Supports single, double and long press inputs.
 - Eco (night) mode. When enabled the display dims during the night.
 - Configurable display brightness.
@@ -25,7 +26,13 @@ As well as several additions to the original design. More specifically:
 - Settings menu.
 - Easily accessible reset button, with integrated hidden serial interface.
 
-## Instalation guide
+Some of this functionality can be seen below:
+
+![](images/time_set_labeled.webp)|![](images/lock_unlock_labeled.webp)
+:-------------------------------:|:-------------------------:
+![](images/timer_countdown_labeled.webp)|![](images/settings_menu_labeled.webp)
+
+## Installation guide
 In order to compile the firmware sketch for the ATmega328P, the Arduino IDE is required, as well as some 3rd party libraries.
 ### Libraries used:
 - [LedControl](https://github.com/wayoda/LedControl) for communicating with the MAX7219.
